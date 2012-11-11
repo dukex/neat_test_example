@@ -2,11 +2,11 @@ require 'bundler'
 
 Bundler.require
 
-task :test, :sass_file do |t, args|
+task :test, :sass_file, :bourbon_lib_file do |t, args|
   sass_file = args[:sass_file]
-  bourbon_lib = args[:bourbon_lib] or "../neat/app/assets/stylesheets/bourbon/lib/bourbon.rb"
+  bourbon_lib_file = args[:bourbon_lib_file]
 
-  system("sass -r #{bourbon_lib} #{sass_file}:test.css")
+  system("sass -r #{bourbon_lib_file} #{sass_file}:test.css")
   include CssParser
 
   parser = CssParser::Parser.new
